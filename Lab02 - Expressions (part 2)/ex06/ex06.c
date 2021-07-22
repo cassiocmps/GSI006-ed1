@@ -2,6 +2,20 @@
 
 int main() {
     printf("== Troca do conteudo de variaveis ==\n");
+
+    int A, B, auxiliar;
+    printf("Entre com o valor de A: ");
+    scanf("%d", &A);
+    printf("Entre com o valor de B: ");
+    scanf("%d", &B);
+
+    auxiliar = A;
+    A = B;
+    B = auxiliar;
+
+    printf("Apos a troca, o valor de A eh %d e o de B eh %d\n", A, B);
+    return 0;
+
 }
 
 /*

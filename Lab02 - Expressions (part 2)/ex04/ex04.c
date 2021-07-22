@@ -1,7 +1,33 @@
 #include <stdio.h>
 
-int main() {
+int main(){
+    float n1, n2, n3, media;
+    int  p1, p2, p3, pesos;
+    char inicial;
+
     printf("<< Calculo da Media >>\n");
+
+    printf("Digite o nome do aluno: ");
+    inicial = getchar();
+
+    printf("Digite a nota da prova 1: ");
+    scanf("%f", &n1);
+    printf("Digite a nota da prova 2: ");
+    scanf("%f", &n2);
+    printf("Digite a nota da prova 3: ");
+    scanf("%f", &n3);
+
+    printf("Digite o peso da prova 1: ");
+    scanf("%d", &p1);
+    printf("Digite o peso da prova 2: ");
+    scanf("%d", &p2);
+    printf("Digite o peso da prova 3: ");
+    scanf("%d", &p3);
+
+    pesos = p1+p2+p3;
+    media = (n1*p1+n2*p2+n3*p3)/pesos;
+    printf("A nota media do aluno %c eh %.2f\n", inicial, media);
+    return 0;
 }
 
 /*

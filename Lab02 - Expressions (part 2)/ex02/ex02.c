@@ -1,7 +1,22 @@
 #include <stdio.h>
 
-int main() {
+int main(){
+    float nota1, nota2, media;
+    char inicial;
+
     printf("<< Calculo da Media >>\n");
+
+    printf("Digite o nome do aluno: ");
+    inicial = getchar();
+
+    printf("Digite a nota da prova 1: ");
+    scanf("%f", &nota1);
+    printf("Digite a nota da prova 2: ");
+    scanf("%f", &nota2);
+
+    media = (nota1+nota2)/2;
+    printf("A nota media do aluno %c eh %.1f\n", inicial, media);
+    return 0;
 }
 
 /*

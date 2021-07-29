@@ -3,12 +3,9 @@
 int main(){
     
     printf("<< Contador de 10 a 0 >>\n");
-    int contador = 10;
-    
-    while (contador >= 0){
         
-        printf("%d...\n",contador);
-        contador--;
+    for (int contador=10; contador>=0; contador--) {        
+        printf("%d...\n",contador);        
     }
 
     printf("FIM!\n");

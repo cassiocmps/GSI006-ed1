@@ -3,7 +3,25 @@
 int main(){
     printf("<< Listando um vetor de numeros pares>>\n");
 
+    int num[6], numero, i=0;
+    
+    while(i<6){
+        
+        printf("Entre com um numero: ");
+        scanf("%d", &numero);
 
+        if (numero%2==0){
+            num[i]=numero;
+            i++;
+        }
+        else printf("Erro: Valor invalido\n");
+    }
+
+    printf("\nOs numeros pares digitados foram:");
+    for (int i=0; i<6; i++){
+        printf(" %d", num[i]);
+    }
+    printf("\n");
     return 0;
 }
 

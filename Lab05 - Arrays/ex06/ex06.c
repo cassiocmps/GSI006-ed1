@@ -3,6 +3,44 @@
 int main(){
     printf("<< Five Values with index >>\n");
 
+        int num[5], maior, menor, indexMaior, indexMenor;
+    float media, total=0;
+
+    for (int i=0; i<5; i++){
+        
+        printf("Input #%d: ", i+1);
+        scanf("%d", &num[i]);
+        
+        if (i==0) {
+            maior=num[i];
+            indexMaior=i;
+            menor=num[i];
+            indexMenor=i;
+        }
+
+        if (num[i]>maior) {
+            maior=num[i];
+            indexMaior=i;
+        }
+        if (num[i]<menor) {
+            menor=num[i];
+            indexMenor=i;
+        }
+
+        total+=num[i];
+
+    }
+
+    media=total/5;
+
+    printf("Valores lidos: ");
+    for (int i=0; i<5; i++){ printf(" %d", num[i]);}
+    printf("\n");
+
+    printf("Max. Value: %d, index %d of the array\n", maior, indexMaior);
+    printf("Min. Value: %d index %d of the array\n", menor, indexMenor);
+    printf("Mean: %.2f\n", media);
+
     return 0;
 }
 

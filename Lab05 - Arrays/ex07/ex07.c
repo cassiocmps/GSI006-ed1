@@ -3,6 +3,24 @@
 int main(){
     printf("<< Normalizando as notas >>\n");
 
+    int nota[5], maior, normal[5];
+
+    for (int i=0; i<5; i++){
+        printf("Entre com a nota do aluno %d: ", i+1);
+        scanf("%d", &nota[i]);
+
+        if (i==0) maior=nota[i];
+
+        if (nota[i]>maior) maior=nota[i];
+    }
+
+    printf("\nNotas normalizadas\n\n");
+
+    for (int i=0; i<5; i++){
+        normal[i]=(nota[i]*100)/maior;
+        printf("A nota do aluno %d eh: %d\n", i+1, normal[i]);
+    }
+
     return 0;
 }
 

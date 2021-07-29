@@ -1,7 +1,20 @@
 #include <stdio.h>
 
 int main(){
+    
+    int num[6];
+
     printf("<< Listando um vetor em ordem inversa !!! >>\n");
+    
+    for (int i=0; i<6; i++){
+        printf("Entre com o numero %d: ", i+1);
+        scanf("%d", &num[i]);
+    }
+
+    printf("Valores lidos: ");
+    for (int i=5; i>0; i--){ printf(" %d", num[i]);}
+    printf("\n");
+
     return 0;
 }
 

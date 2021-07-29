@@ -3,6 +3,21 @@
 int main(){
     printf("<< Zerando negativos >>\n");
 
+    int valor[5];
+
+    for (int i=0; i<5; i++){
+        printf("Entre com um numero %d: ", i+1);
+        scanf("%d", &valor[i]);
+        if (valor[i]<0) valor[i]=0;
+    }
+    printf("\n");
+
+    printf("Negativos zerados:");
+    for (int i=0; i<5; i++){
+        printf(" %d", valor[i]);
+    }
+    printf("\n");
+
     return 0;
 }
 

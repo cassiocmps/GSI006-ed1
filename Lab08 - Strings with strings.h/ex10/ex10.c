@@ -5,27 +5,21 @@
 int main(){
     printf("<< Palindromo >>\n");
 
-    char string[50], inverso[50];
-    int diferentes;
+    char string[50];
+    int tamanho, diferentes=0;
     
     printf("Digite a string: ");
     fgets(string, 50, stdin);
 
-    for(int i = 0; i<strlen(string)-1; i++){
-        string[i] = toupper(string[i]);
+    tamanho=strlen(string)-1; // tamanho é menor que o ultimo indice
+
+    for (int i=0, j=tamanho-1; i<tamanho; i++, j--){ // -1 de novo para tirar a ultimo caracter \0
+        printf("%c - %c \n", string[i], string[j]);
+        if (string[i]!=string[j]){
+            if (string[i]-string[j]==32 || string[i]-string[j]==-32){}
+            else diferentes++;
+        }
     }
-    printf("upper: %s", string);
-
-    for (int i=strlen(string)-2, j=0; i>=0; i--, j++){ // -2 para tirar o \0 e a diferenca do indice e do tamanho do vetor
-        inverso[j]=string[i];
-        // inverso[j+1]=string[strlen(string)-1];
-        inverso[j+1]='\0';
-    }
-    printf("inverso: %s", inverso);
-
-    diferentes=strcmp(string, inverso);
-
-    printf("\ndiferentes: %d\n", diferentes);
 
     if (diferentes==0) printf("Eh um palindromo");
     else printf("Nao eh um palindromo");
@@ -33,5 +27,6 @@ int main(){
     printf("\n");
 
     return 0;
-    a
+    
+    
 }

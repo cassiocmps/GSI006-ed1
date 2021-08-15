@@ -2,12 +2,6 @@
 #include <string.h>
 #include <ctype.h>
 
-void imprimir(s){
-    for (int i=0; i<strlen(s)-2; i++){
-        printf("%c", s[i]);
-    }
-}
-
 int main(){
     printf("<< Vetor de Char >>\n");
 
@@ -35,12 +29,9 @@ int main(){
     fgets(cep, 9, stdin);
 
     printf("\t\tD E C L A R A C A O \n");
-    // printf("Eu, %s, RG %s, CPF %s,\n", nome, rg, cpf);
-    // printf("residente a %s, %s-%s,\n", endereco, cidade, estado);
-    // printf("CEP %s, venho por meio deste declarar que vou estudar para a prova\n", cep);
-
-    printf("Eu, ");
-    for (int i=0; i<strlen(nome))
+    printf("Eu, %.*s, RG %.*s, CPF %.*s,\n", (int)strlen(nome)-1, nome, (int)strlen(rg)-1, rg, (int)strlen(nome)-1, cpf);
+    printf("residente a %.*s, %.*s-%.*s,\n", (int)strlen(endereco)-1, endereco, (int)strlen(cidade)-1, cidade, (int)strlen(estado)-1, estado);
+    printf("CEP %.*s, venho por meio deste declarar que vou estudar para a prova.\n", (int)strlen(cep)-1, cep);
 
     return 0;
 }

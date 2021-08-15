@@ -9,10 +9,14 @@ int main(){
     p = &a; // faz p receber o endereço de a. Dizemos que p aponta para a
 
     //(a)
+    printf("Endereco de \"a\" usando p: %u\n", p);
+    printf("Endereco de \"a\" usando &a: %u\n", &a);
 
     //(b)
+    scanf("%d", p);
+    printf("Novo valor de a: %d", a);
 
-    //(c)
+    //(c) As proximas questões parecem tratar da questão 1... Estão resolvidas lá
 
     return 0;
 }

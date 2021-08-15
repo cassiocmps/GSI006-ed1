@@ -1,7 +1,45 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(){
-    printf("<<  >>\n");
+    printf("<< Data >>\n");
+
+    struct data {
+        char mes[15];
+        int dia, ano;
+    };
+
+    struct data cadastro[3];
+    int maiorAno=0;
+
+    for (int i=0; i<3; i++){
+        
+        printf("Digite o dia: ");
+        scanf("%d", &cadastro[i].dia);
+        getchar(); //getchar() captura o enter da entrada e impede que atrapalhe o fgets
+
+        printf("Digite o mes: ");
+        fgets(cadastro[i].mes, 15, stdin);
+
+        printf("Digite o ano: ");
+        scanf("%d", &cadastro[i].ano);
+        getchar();
+
+        printf("\n");
+    }
+
+    printf("Datas cadastradas: \n");
+    
+    for (int i=0; i<3; i++){
+        printf("Dia %d de %.*s de %d\n", cadastro[i].dia, (int)strlen(cadastro[i].mes)-1, cadastro[i].mes, cadastro[i].ano);
+        if (cadastro[i].ano>maiorAno){
+            maiorAno=cadastro[i].ano;
+        }
+    }
+
+    printf("\n%d foi o maior ano cadastrado.\n", maiorAno);
+
+    
 
     return 0;
 }

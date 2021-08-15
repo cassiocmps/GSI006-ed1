@@ -1,7 +1,45 @@
 #include <stdio.h>
+#include <string.h>
 
 int main(){
-    printf("<<  >>\n");
+    printf("<< Consumo de energia >>\n");
+
+    struct eletro {
+      char nome[15];
+      float potencia, tempo;
+    };
+
+    struct eletro eletrodomestico[5];
+    float dias, total;
+
+    for (int i=0; i<5; i++){
+      printf("\nInforme os dados do %do eletrodomestico:\n", i+1);
+      
+      printf("Nome: ");
+      fgets(eletrodomestico[i].nome, 15, stdin);
+
+      printf("Potencia: ");
+      scanf("%f", &eletrodomestico[i].potencia);
+      getchar();
+
+      printf("Tempo ativo por dia: ");
+      scanf("%f", &eletrodomestico[i].tempo);
+      getchar();
+
+    }
+
+    printf("\nInforme um valor de tempo (em dias): ");
+    scanf("%f", &dias);
+
+    for (int i=0; i<5; i++){
+      total+=eletrodomestico[i].potencia*eletrodomestico[i].tempo;
+    }
+    printf("Consumo total: %.0f KW\n", total);
+
+    printf("Consumo relativo: \n");
+    for (int i=0; i<5; i++){
+      printf("%.*s: %.1f%%\n", (int)strlen(eletrodomestico[i].nome)-1, eletrodomestico[i].nome, ((eletrodomestico[i].potencia*eletrodomestico[i].tempo)/total)*100);
+    }   
 
     return 0;
 }

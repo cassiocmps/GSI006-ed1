@@ -1,8 +1,37 @@
 #include <stdio.h>
+#include <stdlib.h>
 //lembre-se de incluir as bibliotecas adequadas
 
 int main(){
+    
+    typedef struct{
+        int x, y;
+    }ponto;
+
+    ponto *pontos;
+
+    int n;
+    
     printf("Quantos pontos deseja digitar: ");
+    scanf("%d", &n);
+    pontos = (ponto *) malloc(n*sizeof(ponto));
+
+    for (int i=0; i<n; i++){
+        printf("entre com a coordenada x do ponto %d: ", i+1);
+        scanf("%d", &pontos[i].x);
+        printf("entre com a coordenada y do ponto %d: ", i+1);
+        scanf("%d", &pontos[i].y);
+        printf("\n");
+    }
+
+    printf("\nPontos digitados: ");
+
+    for (int i=0; i<n; i++){
+        printf(" (%d, %d)", pontos[i].x, pontos[i].y);
+    }
+    printf("\n");
+
+    free(pontos);
 
     return 0;
 }

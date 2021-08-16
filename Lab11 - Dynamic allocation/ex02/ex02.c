@@ -1,9 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
 //lembre-se de incluir as bibliotecas adequadas
 
 int main() {
     printf("<< Guarda inteiros >>\n");
-    // Insira o seu código aqui.
+    
+    int *ponteiro;
+
+    ponteiro = (int *) malloc(5*sizeof(int));
+
+    for (int i=0; i<5; i++){
+        printf("Digite o %do inteiro: ", i+1);
+        scanf("%d", (ponteiro+i));
+    }
+    
+    for (int i=0; i<5; i++){
+        printf("indice %d: %d\n", i, *(ponteiro+i));
+    }
+    free(ponteiro);
+    return 0;
 }
 
 /*

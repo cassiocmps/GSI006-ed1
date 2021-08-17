@@ -1,10 +1,34 @@
 #include <stdio.h>
 
+typedef struct {
+    double x, y;
+} ponto;
+
+void Multiplica(ponto *p, double c);
+
 int main(){
+    
+    ponto p;
+    ponto *ponteiro;
+    double constante;
+    
     printf("Digite o ponto: ");
+    scanf("%lf,%lf", &p.x, &p.y);
     printf("Digite a constante: ");
+    scanf("%lf", &constante);
+    
+    ponteiro = &p;
+
+    printf("Resultado: (%.0lf,%.0lf) * %.0lf = ", p.x, p.y, constante);
+    Multiplica(ponteiro, constante);
+    printf("(%.0lf,%.0lf)\n", p.x, p.y);
 
     return 0;
+}
+
+void Multiplica(ponto *p, double c){
+    p->x *= c;
+    p->y *= c;
 }
 
 /*

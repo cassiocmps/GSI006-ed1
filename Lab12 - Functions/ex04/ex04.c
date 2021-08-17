@@ -1,10 +1,39 @@
 #include <stdio.h>
 
+double Elevado (double x, double n);
+
 int main(){
+    
+    double x, n;
+
     printf("Digite o valor de x: ");
+    scanf("%lf", &x);
+
     printf("Digite o valor de n: ");
+    scanf("%lf", &n);
+
+    printf("O valor de %lf elevado a %lf eh %lf\n", x, n, Elevado(x, n));
 
     return 0;
+}
+
+double Elevado (double x, double n){
+    
+    double resultado=1;
+
+    if (n>0){
+        for (int i=0; i<n; i++){
+        resultado*=x;
+        }
+    }
+    if (n<0){
+        for (int i=n; i<0; i++){
+        resultado*=x;
+        }
+        resultado=(1/resultado);
+    }
+
+    return resultado;
 }
 
 /*

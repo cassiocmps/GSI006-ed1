@@ -1,12 +1,28 @@
 #include <stdio.h>
 
+void Incremento(double *n, double p);
+
 int main(){
+    
+    double numero, porcento;
+
     printf("Digite o valor de y: ");
+    scanf("%lf", &numero);
     printf("Digite o percentual de alteração x: ");
+    scanf("%lf", &porcento);
+
+    Incremento(&numero, porcento);
+
+    printf("O valor alterado eh: %.lf\n", numero);
 
     return 0;
 }
 
+void Incremento(double *n, double p){
+    double adicional;
+    adicional=(*n)*p;
+    *n+=adicional;
+}
 /*
 => Faça uma função que altere um valor de um número real em x%. 
 Se o valor de x for negativo ele deve ser decrementado, se for

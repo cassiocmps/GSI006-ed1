@@ -1,10 +1,27 @@
 #include <stdio.h>
 
+typedef struct {
+    double x, y;
+} ponto;
+
+void imprime_ponto(ponto p);
+
 int main(){
+    
+    ponto p;
+
     printf("Digite o valor de x: ");
+    scanf("%lf", &p.x);
     printf("Digite o valor de y: ");
+    scanf("%lf", &p.y);
+
+    imprime_ponto(p);
 
     return 0;
+}
+
+void imprime_ponto(ponto p){
+    printf("O ponto digitado eh: (%.0lf,%.0lf)\n", p.x, p.y);
 }
 
 /*

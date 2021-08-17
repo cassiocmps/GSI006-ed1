@@ -1,11 +1,27 @@
 #include <stdio.h>
 
+void DesenhaLinha(int c, int n);
+
 int main(){
-    printf("<<  >>\n");
+    int x, y;
+    printf("Digite a quantidade de linhas a serem impressas: ");
+    scanf("%d", &x);
+    printf("Digite tamanho da linha: ");
+    scanf("%d", &y);
+
+    DesenhaLinha(y,x);
 
     return 0;
 }
 
+void DesenhaLinha(int c, int n){
+    for (int i=0; i<n; i++){
+        for (int j=0; j<c; j++){
+            printf("=");
+        }
+        printf("\n");
+    }
+}
 /*
 => Faça um procedimento chamado DesenhaLinha. Ele deve desenhar 
 uma linha na tela usando vários caracteres "=" (Ex: ========). 

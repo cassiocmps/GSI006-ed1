@@ -1,10 +1,29 @@
 #include <stdio.h>
 
+void Troque(int *x, int *y);
+
 int main(){
+    
+    int A, B;
+
     printf("Digite o número A: ");
+    scanf("%d", &A);
     printf("Digite o número B: ");
+    scanf("%d", &B);
+
+    Troque(&A, &B);
+
+    printf("O número A eh: %d\n", A);
+    printf("O número B eh: %d\n", B);
 
     return 0;
+}
+
+void Troque(int *x, int *y){
+    int auxiliar;
+    auxiliar=*x;
+    *x=*y;
+    *y=auxiliar;
 }
 
 /*

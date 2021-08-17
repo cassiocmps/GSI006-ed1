@@ -1,10 +1,28 @@
 #include <stdio.h>
 
+void Incremento(double *n, double p);
+// pensei primeiro nessa solução, acabou sendo oq pede na 9. só colei esse mesmo código lá
+
 int main(){
+    
+    double numero, porcento;
+
     printf("Digite o valor de y: ");
+    scanf("%lf", &numero);
     printf("Digite o percentual de alteração x: ");
+    scanf("%lf", &porcento);
+
+    Incremento(&numero, porcento);
+
+    printf("O valor alterado eh: %.lf\n", numero);
 
     return 0;
+}
+
+void Incremento(double *n, double p){
+    double adicional;
+    adicional=(*n)*p;
+    *n+=adicional;
 }
 
 /*

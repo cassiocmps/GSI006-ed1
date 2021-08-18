@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 void imprime_vet_int (int n[], int tamanho);
 void imprime_vet_double (double n[], int tamanho);
@@ -34,18 +35,21 @@ void imprime_vet_int (int n[], int tamanho){
     for (int i=0; i<tamanho; i++){
         printf("%d ", n[i]);
     }
+    printf("\n");
 }
 
 void imprime_vet_double (double n[], int tamanho){
     for (int i=0; i<tamanho; i++){
         printf("%.2lf ", n[i]);
     }
+    printf("\n");
 }
 
 void imprime_vet_float (float n[], int tamanho){
     for (int i=0; i<tamanho; i++){
         printf("%.2f ", n[i]);
     }
+    printf("\n");
 }
 
 /*

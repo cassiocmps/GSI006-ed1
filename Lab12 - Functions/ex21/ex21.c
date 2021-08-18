@@ -1,10 +1,49 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+void multvet(int vetor[], int tamanho, int escalar);
+void imprime_vet_int (int n[], int tamanho);
 
 int main(){
-    printf("Digite o tamanho do vetor: ");
-    printf("Digite o valor do escalar: ");
+    
+    int *vetor;
+    int tamanho, escalar;
 
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &tamanho);
+
+    vetor = (int *) malloc(tamanho*sizeof(int));
+    
+    for (int i=0; i<tamanho; i++){
+        printf("Digite o valor %d: ", i+1);
+        scanf("%d", &vetor[i]);
+    }
+
+    printf("Digite o valor do escalar: ");
+    scanf("%d", &escalar);
+
+    printf("O vetor de origem eh: ");
+    imprime_vet_int(vetor, tamanho);
+
+    printf("O vetor final eh: ");
+    multvet(vetor, tamanho, escalar);
+    imprime_vet_int(vetor, tamanho);
+    
+    free(vetor);
     return 0;
+}
+
+void multvet(int vetor[], int tamanho, int escalar){
+    for (int i=0; i<tamanho; i++){
+        vetor[i]*=escalar;
+    }    
+}
+
+void imprime_vet_int (int n[], int tamanho){
+    for (int i=0; i<tamanho; i++){
+        printf("%d ", n[i]);
+    }
+    printf("\n");
 }
 
 /*

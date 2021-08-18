@@ -1,10 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
-    printf("Digite o tamanho do vetor: ");
+void imprime_vet_double (double n[], int tamanho);
+void maior_e_menor (double n[], int tamanho, double *maior, double *menor);
 
+int main(){
+    
+    double *vetor, maior, menor;
+    int tamanho;
+
+    printf("Digite o tamanho do vetor: ");
+    scanf("%d", &tamanho);
+
+    vetor = (double *) malloc(tamanho*sizeof(double));
+
+    for (int i=0; i<tamanho; i++){
+        printf("Digite o valor %d: ", i+1);
+        scanf("%lf", &vetor[i]);
+    }
+
+    printf("O vetor principal eh: ");
+    imprime_vet_double(vetor, tamanho);
+
+    maior_e_menor(vetor, tamanho, &maior, &menor);
+
+    printf("O maior valor eh %.2lf\nO menor valor eh %.2lf\n", maior, menor);
+
+    free(vetor);
     return 0;
+}
+
+void imprime_vet_double (double n[], int tamanho){
+    for (int i=0; i<tamanho; i++){
+        printf("%.2lf ", n[i]);
+    }
+    printf("\n");
+}
+
+void maior_e_menor (double n[], int tamanho, double *maior, double *menor){
+    *maior = n[0];
+    *menor = n[0];
+    for (int i=1; i<tamanho; i++){
+        if (n[i] > *maior) *maior = n[i];
+        if (n[i] < *menor) *menor = n[i];
+    }
 }
 
 

@@ -1,9 +1,22 @@
 #include <stdio.h>
 
+double Neperiano(int n);
+
 int main(){
+    
+    int n;
+
     printf("Digite o valor de n para aproximar o numero neperiano: ");
+    scanf("%d", &n);
+
+    printf("O valor do numero neperiano eh: %lf\n", Neperiano(n));
 
     return 0;
+}
+
+double Neperiano(int n){
+    
+    
 }
 
 /*

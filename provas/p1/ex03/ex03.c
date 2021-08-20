@@ -28,14 +28,42 @@
 
 */
 
-int main(){
+int calculo_lucro (double compra, double venda, double *porcentagem){
+    
+    double lucroBruto, margemLucro;
 
+    lucroBruto = venda - compra;
+    margemLucro = (lucroBruto / venda) * 100.0;
+    *porcentagem = margemLucro;
+
+    if (margemLucro <= 0) return 1;
+    else if (margemLucro > 0 && margemLucro <= 20) return 2;
+    else if (margemLucro > 20 && margemLucro <= 30) return 3;
+    else if (margemLucro > 40) return 4;
+    else return -1;
+
+}
+
+int main(){
+    double compra, venda;
+    int calculo;
+    double porcentagem;
    // Ex03: utilizando a função de cálculo de lucro, leia o preço de compra e venda
    // e mostre o percentual de lucro ou prejuízo e a classificação de acordo com
    // a tabela acima. 
-   printf("Digite o preco de compra:");
+   printf("Digite o preco de compra: ");
+   scanf("%lf", &compra);
+   printf("Digite o preco de venda: ");
+   scanf("%lf", &venda);
 
-   printf("Digite o preco de venda:");
+   calculo = calculo_lucro(compra, venda, &porcentagem);
+
+   printf("Preço de compra: %.0lf; Preco de venda: %.0lf; ", compra, venda);
+   if (calculo == 1) printf("Prejuizo de %.0lf%%\n", porcentagem);
+   else if (calculo == 2) printf("Lucro pequeno de %.0lf%%\n", porcentagem);
+   else if (calculo == 3) printf("Lucro bom de %.0lf%%\n", porcentagem);
+   else if (calculo == 4) printf("Lucro alto de %.0lf%%\n", porcentagem);
+   else printf("Margem: erro no calculo\n");
    
    // exemplo de saída:
    // Preço de compra: 10; Preco de venda:11; Lucro Pequeno de 10%

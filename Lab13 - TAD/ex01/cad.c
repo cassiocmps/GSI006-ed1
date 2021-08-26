@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <cad.h>
+#include "cad.h"
 
 void cadastraAluno(int tamanho, aluno *vetor){
     

@@ -2,7 +2,7 @@
 
 int main(){
     
-    printf("<<  >>\n");
+    printf("<< template >>\n");
 
     return 0;
 }

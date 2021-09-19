@@ -14,6 +14,8 @@ typedef struct {
 // - Entrada: todos os livros cadastrados 
 // - Saída: índice do vetor indicando o livro usado mais antigo
 // (se houver empate pode ser retornado qualquer um dos livros)
+// check:<<<erro: e2.5a: Inicialização errada (deveria ser o maior valor possível) ou o ano do primeiro livro mais antigo>>>>
+// check:<<<erro: e2.7: se todos os livros são novos o programa vai retornar errado>>>>
 
 int buscar_mais_antigo (livro vetor[], int tamanho){
     

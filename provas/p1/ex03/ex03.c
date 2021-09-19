@@ -27,12 +27,12 @@
 +-------------------+-----------------------------------------------+----------------+
 
 */
-
 int calculo_lucro (double compra, double venda, double *porcentagem){
     
     double lucroBruto, margemLucro;
 
     lucroBruto = venda - compra;
+// check:<<<erro: e3.3: Cálculo com erros (não corresponde a porcentagem pedida OU erro na fórmula OU porcentagem baseada na venda e não na compra OU divisão inteira )>>>>
     margemLucro = (lucroBruto / venda) * 100.0;
     *porcentagem = margemLucro;
 
@@ -40,8 +40,8 @@ int calculo_lucro (double compra, double venda, double *porcentagem){
     else if (margemLucro > 0 && margemLucro <= 20) return 2;
     else if (margemLucro > 20 && margemLucro <= 30) return 3;
     else if (margemLucro > 40) return 4;
-    else return -1;
-
+    else return -1;// check:<<<erro: e3.2: Faltou testar os valores inválidos dentro da função / teste errado / faltou alguns testes>>>>
+    // check:<<<comentário: e3.4: o último teste é desnecessário E/OU alguns testes no IF são desnecessários>>>>
 }
 
 int main(){

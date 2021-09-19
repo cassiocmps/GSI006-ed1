@@ -11,6 +11,7 @@ typedef struct {
     double raio;
 } circulo;
 
+
 int main(){
 
    circulo c1;

@@ -21,3 +21,20 @@ troca_pos_lista( lista, 4, 10)
  };
 
 */
+
+int troca_pos_lista(Lista *li, int pos1, int pos2){
+    if (li == NULL)
+        return -1;
+    if (pos1 == pos2)
+        return -1;
+    if (pos1>li->qtd || pos2>li->qtd)
+        return -1;
+    if (pos1==0 || pos2==0)
+        return -1;
+
+    struct aluno temp;
+    temp = li->dados[pos1-1];
+    li->dados[pos1-1] = li->dados[pos2-1];
+    li->dados[pos2-1] = temp;
+    return 0;
+}

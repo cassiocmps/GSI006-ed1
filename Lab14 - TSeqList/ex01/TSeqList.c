@@ -66,8 +66,8 @@ int imprime_lista(Lista *li)
     for (int i = 0; i < li->qtd; i++)
     {
         printf("\nMatricula: %d\n", li->dados[i].matricula);
-        printf("\nNome: %s\n", li->dados[i].nome);
-        printf("Notas: %f;%f;%f\n", li->dados[i].n1, li->dados[i].n2, li->dados[i].n3);
+        printf("Nome: %s\n", li->dados[i].nome);
+        printf("Notas: %.1f; %.1f; %.1f\n", li->dados[i].n1, li->dados[i].n2, li->dados[i].n3);
     }
     /*
     struct aluno temp;
@@ -79,6 +79,41 @@ int imprime_lista(Lista *li)
         printf("Notas: %f;%f;%f", temp.n1, temp.n2, temp.n3);
     }
     */
+    return 0;
+}
+
+int troca_pos_lista(Lista *li, int pos1, int pos2){
+    if (li == NULL)
+        return -1;
+    if (pos1 == pos2)
+        return -1;
+    if (pos1>li->qtd || pos2>li->qtd)
+        return -1;
+    if (pos1==0 || pos2==0)
+        return -1;
+
+    struct aluno temp;
+    temp = li->dados[pos1-1];
+    li->dados[pos1-1] = li->dados[pos2-1];
+    li->dados[pos2-1] = temp;
+    return 0;
+}
+
+int remove_intervalo_lista(Lista *li, int posI, int posF){
+    if (li == NULL)
+        return -1;
+    if (posI >= posF)
+        return -1;
+    if (posI>li->qtd || posF>li->qtd)
+        return -1;
+    if (posI==0 || posF==0)
+        return -1;
+
+    for (int i=(posI-1), j=(posF); i < (posF); i++, j++){
+        li->dados[i] = li->dados[j];
+        li->qtd--;
+    }
+    
     return 0;
 }
 

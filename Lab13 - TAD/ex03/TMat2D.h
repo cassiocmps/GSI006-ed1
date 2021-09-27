@@ -16,3 +16,5 @@ double *mat2D_sum_columns(TMat2D *mat);
 int mat2D_get_rows(TMat2D *mat);
 int mat2D_get_columns(TMat2D *mat);
 int mat2D_print (TMat2D *mat);
+// new function
+int mat2d_increase_size(TMat2D *mat, int rows, int columns);

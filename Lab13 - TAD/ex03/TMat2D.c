@@ -40,6 +40,33 @@ int mat2D_get_value(TMat2D *mat, int i, int j, double *val){
     return 0;
 }
 
+int mat2d_increase_size(TMat2D *mat, int rows, int columns){
+    if (mat == NULL)
+        return -1;
+    if (rows < mat->nrows || columns < mat->ncolumns)
+        return -1;
+    if ((rows == mat->nrows && columns == mat->ncolumns))
+        return -1;
+
+    TMat2D *new_mat;
+    new_mat = mat2D_create(rows,columns);
+
+    for (int i = 0; i < new_mat->nrows*new_mat->ncolumns; i++){
+        new_mat->data[i] = 0;
+    }
+
+    double temp;
+    for (int i=0; i < mat->nrows; i++){
+        for (int j=0; j < mat->ncolumns; j++){
+            mat2D_get_value(mat, i, j, &temp);
+            mat2D_set_value(new_mat, i, j, temp);
+        }
+    }
+    *mat = *new_mat;
+    mat2D_free(new_mat);    
+    return 0;
+}
+
 int mat2D_get_value_admin(TMat2D *mat, int i, int j){
     if (mat == NULL)
         return -1;

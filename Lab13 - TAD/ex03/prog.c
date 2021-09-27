@@ -42,6 +42,10 @@ int main () {
     mat2D_print (m3);
     printf("\nTrace of m3: %.1lf\n", trace);
 
+    mat2d_increase_size(m3, 8, 8);
+    printf("\nm3 after mat2d_increase_size:\n");
+    mat2D_print (m3);
+
     printf("\n=== rows and columns sum tests ===\n(using mat2D_get_columns and mat2D_get_rows)\nm2:\n\n");
     mat2D_print (m2);
     printf("\nm2 columns sum: ");

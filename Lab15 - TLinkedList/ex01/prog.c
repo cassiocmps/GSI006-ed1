@@ -34,11 +34,49 @@ int main(){
 
     for (int i=0; i<4; i++){
         // list_push_front(lab_students, st[i]);
-        // list_push_back(lab_students, st[i]);
-        list_insert_sorted(lab_students, st[i]);
+        list_push_back(lab_students, st[i]);
     }
 
+    list_erase_data(lab_students, 30);
+
     list_print(lab_students);
+    printf("\n=== SIZE OF THE LIST: %d ===\n", list_size(lab_students));
+    
+    struct student stTest;
+    
+    list_find_mat(lab_students, 20, &stTest);
+    printf("\n----------list's #id 20--------------\n");
+    printf("Id: %d\n", stTest.id);
+    printf("Name: %s\n", stTest.name);
+    printf("Grades: %.1f; %.1f; %.1f.\n", stTest.g1, stTest.g2, stTest.g3);
+        
+    list_find_pos(lab_students, 3, &stTest);
+    printf("\n----------list's #pos 3--------------\n");
+    printf("Id: %d\n", stTest.id);
+    printf("Name: %s\n", stTest.name);
+    printf("Grades: %.1f; %.1f; %.1f.\n", stTest.g1, stTest.g2, stTest.g3);
+
+    list_front(lab_students, &stTest);
+    printf("\n----------list's head--------------\n");
+    printf("Id: %d\n", stTest.id);
+    printf("Name: %s\n", stTest.name);
+    printf("Grades: %.1f; %.1f; %.1f.\n", stTest.g1, stTest.g2, stTest.g3);
+
+    list_back(lab_students, &stTest);
+    printf("\n----------list's back--------------\n");
+    printf("Id: %d\n", stTest.id);
+    printf("Name: %s\n", stTest.name);
+    printf("Grades: %.1f; %.1f; %.1f.\n", stTest.g1, stTest.g2, stTest.g3);
+
+    int posTest;
+    list_get_pos(lab_students, 10, &posTest);
+    printf("\npos %d\n", posTest);
+
+    // printf("\n=== SIZE OF THE LIST: %d ===\n", list_size(lab_students));
+    
+    // list_pop_front(lab_students);
+    // list_pop_back(lab_students);
+
     list_free(lab_students);
     return 0;
 }

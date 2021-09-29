@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "TLinkedList.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -12,12 +13,6 @@ struct list_node {
     struct student data;
     list_node *next;
 };
-
-// struct student{
-//     int matricula;
-//     char nome[30];
-//     float n1,n2,n3;
-// };
 
 TLinkedList *list_create(){
     TLinkedList *list;
@@ -81,11 +76,197 @@ int list_push_back(TLinkedList *list, struct student st){
     }
 }
 
+int list_size(TLinkedList *list){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    int counter=0;
+    list_node *aux;
+    aux = list->head;
+
+    while (aux != NULL){
+        counter++;
+        aux = aux->next;
+    }
+    return counter;
+}
+
+int list_front(TLinkedList *list, struct student *st){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+    *st = list->head->data;
+    return SUCCESS;
+}
+
+int list_back(TLinkedList *list, struct student *st){
+    list_node *aux;
+    aux = list->head;
+
+    while (aux->next != NULL){
+        aux = aux->next;
+    }
+    *st = aux->data;
+    return SUCCESS;
+}
+
+int list_pop_front(TLinkedList *list){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+    list_node *aux = NULL;
+    aux = list->head;
+    list->head = list->head->next;
+    free(aux);
+    // printf("\n----------print freed aux--------------\n");
+    // printf("Id: %d\n", aux->data.id);
+    // printf("Name: %s\n", aux->data.name);
+    // printf("Grades: %.1f; %.1f; %.1f.\n", aux->data.g1, aux->data.g2, aux->data.g3);
+    return SUCCESS;
+}
+
+int list_pop_back(TLinkedList *list){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+
+    list_node *previous = NULL;
+    list_node *current = list->head;
+    
+    while (current->next != NULL){
+            previous = current;
+            current = current->next;
+        }
+    previous->next = NULL;
+    free(current);
+}
+
+int list_find_pos(TLinkedList *list, int pos, struct student *st){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+    if (pos <=0 || pos > list_size(list)){
+        return ELEM_NOT_FOUND;
+    }
+    list_node *aux;
+    aux = list->head;
+
+    for (int i=1; i<pos; i++){
+        aux = aux->next;
+    }
+
+    *st = aux->data;
+    return SUCCESS;
+}
+
+int list_find_id(TLinkedList *list, int id, struct student *st){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+
+    list_node *aux;
+    aux = list->head;
+
+    while (aux != NULL && aux->data.id != id){
+        aux = aux->next;
+    }
+
+    *st = aux->data;
+    return SUCCESS;
+}
+
+int list_get_pos(TLinkedList *list, int id, int *pos){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+
+    list_node *aux;
+    aux = list->head;
+    int count=1;
+
+    while (aux != NULL && aux->data.id != id){
+        count++;
+        aux = aux->next;
+    }
+
+    if (count > list_size(list)){
+        return ELEM_NOT_FOUND;
+    } else {
+        *pos = count;
+        return SUCCESS;
+    }
+}
+
+int list_erase_pos(TLinkedList *list, int pos){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+    if (pos <=0 || pos > list_size(list)){
+        return ELEM_NOT_FOUND;
+    }
+    
+    list_node *current, *previous;
+    current = list->head;
+    previous = NULL;
+
+    for (int i=1; i<pos; i++){
+        previous = current;
+        current = current->next;
+    }
+    previous->next = current->next;
+    free(current);
+
+    return SUCCESS;
+}
+
+int list_erase_data(TLinkedList *list, int id){
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->head == NULL){
+        return ELEM_NOT_FOUND;
+    }
+
+    list_node *current, *previous;
+    current = list->head;
+    previous = NULL;
+
+    while (current != NULL && current->data.id != id){
+        previous = current;
+        current = current->next;
+    }
+
+    previous->next = current->next;
+    free(current);
+
+    return SUCCESS;
+}
+
 int list_insert(TLinkedList *list, int pos, struct student st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
-
     if (pos <= 0){
         return OUT_OF_RANGE;
     }
@@ -94,59 +275,70 @@ int list_insert(TLinkedList *list, int pos, struct student st){
     node = malloc(sizeof(node));
     if (node == NULL){
         return OUT_OF_MEMORY;
-    }
-    
+    }    
     node->data = st;
-
-    list_node *current, *previous;
-    previous = NULL;
-    current = list->head;
-    int i=1;
-
-    while (i <= pos){
-        previous = current;
-        current = current->next;
+    
+    //--------------------------------------------------
+    list_node *curr;
+    list_node *prev;
+    prev = NULL;
+    curr = list->head;
+    int  i=1;
+    while (i < pos){
+        prev = curr;
+        curr = curr->next;
         i++;
     }
-    if (previous == NULL){ // insert in head
-        node->next = list->head;
-        list->head = node;
-    } else { // insert in any other position
-        previous->next = node;
-        node->next = current;
-    }
+    prev->next = node;
+    node->next = curr;
+
+    // list_node *aux = list->head;        
+    // for (int i=0; i<pos; i++){
+    //     aux = aux->next;
+    // }
+    // node->next = aux->next->next;
+    // aux->next = node;
+
     return SUCCESS;
 }
 
-int list_insert_sorted(TLinkedList *list, struct student st){
-    if (list == NULL){
+int list_insert_sorted(TLinkedList *list, struct student st)
+{
+    if (list == NULL)
+    {
         return INVALID_NULL_POINTER;
     }
-    
-    list_node *node;
-    node = malloc(sizeof(node));
-    if (node == NULL){
-        return OUT_OF_MEMORY;
-    }
-    
-    node->data = st;
+    else
+    {
+        list_node *node;
+        node = malloc(sizeof(node));
+        if (node == NULL)
+        {
+            return OUT_OF_MEMORY;
+        }
+        node->data = st;
 
-    list_node *current, *previous;
-    previous = NULL;
-    current = list->head;
-
-    while (current!=NULL && current->data.id < st.id){
-        previous = current;
-        current = current->next;
+        list_node *curr; // current - nó atual
+        list_node *prev; // previous - nó anterior
+        prev = NULL;
+        curr = list->head;
+        while ((curr != NULL) && curr->data.id < st.id)
+        {
+            prev = curr;
+            curr = curr->next;
+        }
+        if (prev == NULL)  // insere na cabeça (lista vazia ou não)
+        {
+            node->next = list->head;
+            list->head = node;
+        }
+        else
+        {// insere a partir do segundo elemento (incluso)
+            prev->next = node;
+            node->next = curr;
+        }
+        return SUCCESS;
     }
-    if (previous == NULL){ // insert in head
-        node->next = list->head;
-        list->head = node;
-    } else { // insert in any other position
-        previous->next = node;
-        node->next = current;
-    }
-    return SUCCESS;
 }
 
 int list_print(TLinkedList *list){

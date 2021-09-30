@@ -267,78 +267,70 @@ int list_insert(TLinkedList *list, int pos, struct student st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
-    if (pos <= 0){
+    if (pos <= 0 || pos>(list_size(list)+1)){
         return OUT_OF_RANGE;
     }
     
     list_node *node;
-    node = malloc(sizeof(node));
+    node = malloc(sizeof(list_node));
     if (node == NULL){
         return OUT_OF_MEMORY;
     }    
     node->data = st;
     
-    //--------------------------------------------------
-    list_node *curr;
-    list_node *prev;
-    prev = NULL;
-    curr = list->head;
-    int  i=1;
-    while (i < pos){
-        prev = curr;
-        curr = curr->next;
-        i++;
-    }
-    prev->next = node;
-    node->next = curr;
+    list_node *current, *previous;
+    current = list->head;
+    previous = NULL;
 
-    // list_node *aux = list->head;        
-    // for (int i=0; i<pos; i++){
-    //     aux = aux->next;
-    // }
-    // node->next = aux->next->next;
-    // aux->next = node;
+    for (int i=1; i<pos; i++){
+        previous = current;
+        current = current->next;
+    }
+    // printf("new node: %d", node->data.id);
+    // printf("previous node: %d", previous->data.id);
+    // printf("current node: %d", current->data.id);
+    // previous->next = node;
+    // node->next = current;
+    if (previous == NULL){
+        node->next = list->head;
+        list->head = node;
+    } else {
+        previous->next = node;
+        node->next = current;
+    }
 
     return SUCCESS;
 }
 
-int list_insert_sorted(TLinkedList *list, struct student st)
-{
-    if (list == NULL)
-    {
+int list_insert_sorted(TLinkedList *list, struct student st){
+    if (list == NULL){
         return INVALID_NULL_POINTER;
     }
-    else
-    {
-        list_node *node;
-        node = malloc(sizeof(node));
-        if (node == NULL)
-        {
-            return OUT_OF_MEMORY;
-        }
-        node->data = st;
-
-        list_node *curr; // current - nó atual
-        list_node *prev; // previous - nó anterior
-        prev = NULL;
-        curr = list->head;
-        while ((curr != NULL) && curr->data.id < st.id)
-        {
-            prev = curr;
-            curr = curr->next;
-        }
-        if (prev == NULL)  // insere na cabeça (lista vazia ou não)
-        {
-            node->next = list->head;
-            list->head = node;
-        }
-        else
-        {// insere a partir do segundo elemento (incluso)
-            prev->next = node;
-            node->next = curr;
-        }
-        return SUCCESS;
+    
+    list_node *node;
+    node = malloc(sizeof(list_node));
+    if (node == NULL){
+        return OUT_OF_MEMORY;
     }
+    node->data = st;
+
+    list_node *current, *previous;
+    previous = NULL;
+    current = list->head;
+    
+    while (current != NULL && current->data.id < st.id){
+        previous = current;
+        current = current->next;
+    }
+    if (previous == NULL){
+        node->next = list->head;
+        list->head = node;
+    } else {
+        previous->next = node;
+        node->next = current;
+    }
+    return SUCCESS;
+    
 }
 
 int list_print(TLinkedList *list){

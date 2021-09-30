@@ -7,44 +7,52 @@ int main(){
     TLinkedList *lab_students;
     lab_students = list_create();
     
-    struct student st[4];
-    st[0].id = 10;
-    strcpy(st[0].name, "cassio");
-    st[0].g1 = 7;
-    st[0].g2 = 7;
-    st[0].g3 = 7;
+    struct student st[5];
+    st[3].id = 10;
+    strcpy(st[3].name, "cassio");
+    st[3].g1 = 7;
+    st[3].g2 = 7;
+    st[3].g3 = 7;
 
-    st[1].id = 20;
-    strcpy(st[1].name, "joao");
-    st[1].g1 = 8;
-    st[1].g2 = 8;
-    st[1].g3 = 8;
+    st[2].id = 20;
+    strcpy(st[2].name, "joao");
+    st[2].g1 = 8;
+    st[2].g2 = 8;
+    st[2].g3 = 8;
 
-    st[2].id = 30;
-    strcpy(st[2].name, "gustavo");
-    st[2].g1 = 9;
-    st[2].g2 = 9;
-    st[2].g3 = 9;
+    st[0].id = 30;
+    strcpy(st[0].name, "gustavo");
+    st[0].g1 = 9;
+    st[0].g2 = 9;
+    st[0].g3 = 9;
 
-    st[3].id = 40;
-    strcpy(st[3].name, "lucas");
-    st[3].g1 = 6;
-    st[3].g2 = 6;
-    st[3].g3 = 6;
+    st[1].id = 40;
+    strcpy(st[1].name, "lucas");
+    st[1].g1 = 6;
+    st[1].g2 = 6;
+    st[1].g3 = 6;
+
+    st[4].id = 50;
+    strcpy(st[4].name, "bruno");
+    st[4].g1 = 6.5;
+    st[4].g2 = 6.5;
+    st[4].g3 = 6.5;
 
     for (int i=0; i<4; i++){
         // list_push_front(lab_students, st[i]);
-        list_push_back(lab_students, st[i]);
+        // list_push_back(lab_students, st[i]);
+        list_insert_sorted(lab_students, st[i]);
     }
 
-    list_erase_data(lab_students, 30);
+    // list_erase_data(lab_students, 30);
+    // list_insert(lab_students, 1, st[4]);
 
     list_print(lab_students);
     printf("\n=== SIZE OF THE LIST: %d ===\n", list_size(lab_students));
     
     struct student stTest;
     
-    list_find_mat(lab_students, 20, &stTest);
+    list_find_id(lab_students, 20, &stTest);
     printf("\n----------list's #id 20--------------\n");
     printf("Id: %d\n", stTest.id);
     printf("Name: %s\n", stTest.name);

@@ -193,8 +193,12 @@ int list_find_id(TLinkedList *list, int id, struct student *st){
         aux = aux->next;
     }
 
-    *st = aux->data;
-    return SUCCESS;
+    if (aux == NULL){
+        return ELEM_NOT_FOUND;
+    }else{
+        *st = aux->data;
+        return SUCCESS;
+    }
 }
 
 int list_get_pos(TLinkedList *list, int id, int *pos){

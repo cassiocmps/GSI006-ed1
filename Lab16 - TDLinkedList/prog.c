@@ -70,11 +70,11 @@ int main(){
     st[4].g2 = 6.5;
     st[4].g3 = 6.5;
 
-    for (int i=0; i<4; i++){
-        // list_push_front(lab_students, st[i]);
-        list_push_back(lab_students, st[i]);
-        // list_insert(lab_students, i, st[i]);
-    }
+    // for (int i=0; i<4; i++){
+    //     // list_push_front(lab_students, st[i]);
+    //     list_push_back(lab_students, st[i]);
+    //     // list_insert(lab_students, i, st[i]);
+    // }
     // list_insert(lab_students, 5, st[4]);
     // list_push_back(lab_students, st[4]);
 
@@ -82,8 +82,11 @@ int main(){
     printf("\n=== SIZE OF THE LIST: %d ===\n", list_size(lab_students));
 
     list_insert(lab_students, 1, st[4]);
+    list_insert(lab_students, 2, st[3]);
+    list_insert(lab_students, 4, st[2]);
     // list_erase(lab_students, 1);
     list_print_forward(lab_students);
+    printf("\n=== SIZE OF THE LIST: %d ===\n", list_size(lab_students));
     // for (int i=0; i<5; i++){
     // //     // list_pop_front(lab_students);
     // //     list_pop_back(lab_students);

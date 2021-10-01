@@ -97,9 +97,9 @@ int list_insert(TDLinkedList *list, int pos, struct student st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
-    if (list->begin == NULL){
-        return ELEM_NOT_FOUND;
-    }
+    // if (list->begin == NULL){
+    //     return ELEM_NOT_FOUND;
+    // }
     if (pos <=0 || pos > (list->size+1)){
         return ELEM_NOT_FOUND;
     }
@@ -111,12 +111,21 @@ int list_insert(TDLinkedList *list, int pos, struct student st){
     node->data = st;
 
     if (pos == 1){ // insert at the begining
+        if (list->begin == NULL){ // empty list
+            node->prev = NULL;
+            node->next = NULL;
+            list->begin = node;
+            list->end = node;
+            list->size++;
+            return SUCCESS; 
+        }else { // non-empty list
         node->prev = NULL;
         node->next = list->begin;
         list->begin->prev = node;
         list->begin = node;
         list->size++;
         return SUCCESS;
+        }
     }
 
     if (pos == (list->size+1)){ // insert at the end

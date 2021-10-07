@@ -26,10 +26,10 @@ int troca_pos_lista(Lista *li, int pos1, int pos2){
     if (li == NULL)
         return -1;
     if (pos1 == pos2)
-        return -1;
+        return -1;// check:<<<comentário: não necessariamente isso é um erro, poderia retornar 0 >>>>
     if (pos1>li->qtd || pos2>li->qtd)
         return -1;
-    if (pos1==0 || pos2==0)
+    if (pos1==0 || pos2==0)// check:<<<erro: <=0 >>>>
         return -1;
 
     struct aluno temp;

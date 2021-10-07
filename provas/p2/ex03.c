@@ -54,8 +54,8 @@ int mat2d_increase_size(TMat2D *mat, int rows, int columns){
             mat2D_set_value(new_mat, i, j, temp);
         }
     }
-    *mat = *new_mat;
-    mat2D_free(new_mat);    
+    *mat = *new_mat;// check:<<<erro: essa cópia fez só a cópia do ponteiro para o data>>>>
+    mat2D_free(new_mat);    // check:<<<erro: então, ao chamar aqui vc acaba apagando o data>>>>
     return 0;
 }
 

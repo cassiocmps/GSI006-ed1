@@ -40,7 +40,7 @@ int main(){
     printf("\npilha vazia: %d\n", stack_empty(st));
 
     for (int i=0; i<5; i++){
-        printf("\nPUSHING #%d", i);
+        printf("\nPUSHING #%d", i+1);
         stack_push(st, al[i]);
         stack_top(st, &test);
         printf("\nMatricula: %d", test.matricula);
@@ -56,7 +56,7 @@ int main(){
         printf("\npilha vazia: %d\n", stack_empty(st));
         // printf("pilha cheia: %d", stack_full(st));
         stack_top(st, &test);
-        printf("\nPOPING #%d", i);
+        printf("\nPOPING #%d", i+1);
         printf("\nMatricula: %d", test.matricula);
         printf("\nNome: %s", test.nome);
         printf("\nNotas: %.1f;%.1f;%.1f\n", test.n1, test.n2, test.n3);

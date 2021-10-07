@@ -24,7 +24,7 @@ int list_find_pos(TLinkedList *list, int pos, struct student *st);
 int list_find_id(TLinkedList *list, int id, struct student *st);
 int list_get_pos(TLinkedList *list, int id, int *pos);
 int list_erase_pos(TLinkedList *list, int pos);
-int list_erase_data(TLinkedList *list, int id){
+int list_erase_data(TLinkedList *list, int id);
 int list_insert_sorted(TLinkedList *list, struct student st);
 int list_insert(TLinkedList *list, int pos, struct student st);
 int list_print(TLinkedList *list);

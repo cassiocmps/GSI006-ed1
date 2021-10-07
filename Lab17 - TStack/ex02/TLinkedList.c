@@ -10,27 +10,27 @@ struct TLinkedList {
 };
 
 struct list_node {
-    struct student data;
+    struct aluno data;
     list_node *next;
 };
 
 TLinkedList *list_create(){
+    // if (sorted!=0 && sorted!=1){
+    //     return NULL;
+    // }
     TLinkedList *list;
     list = malloc(sizeof(TLinkedList));
-    if (list != NULL)
-    {
+    if (list != NULL){
         list->head = NULL;
     }
     return list;
 }
 
-int list_push_front(TLinkedList *list, struct student st){
-    if (list == NULL)
-    {
+int list_push_front(TLinkedList *list, struct aluno st){
+    if (list == NULL){
         return INVALID_NULL_POINTER;
     }
-    else
-    {
+    else{
         list_node *node;
         node = malloc(sizeof(list_node));
         if (node == NULL)
@@ -45,13 +45,10 @@ int list_push_front(TLinkedList *list, struct student st){
     }
 }
 
-int list_push_back(TLinkedList *list, struct student st){
-    if (list == NULL)
-    {
+int list_push_back(TLinkedList *list, struct aluno st){
+    if (list == NULL){
         return INVALID_NULL_POINTER;
-    }
-    else
-    {
+    }else{
         list_node *node;
         node = malloc(sizeof(list_node));
         if (node == NULL){
@@ -91,7 +88,7 @@ int list_size(TLinkedList *list){
     return counter;
 }
 
-int list_front(TLinkedList *list, struct student *st){
+int list_front(TLinkedList *list, struct aluno *st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
@@ -102,7 +99,7 @@ int list_front(TLinkedList *list, struct student *st){
     return SUCCESS;
 }
 
-int list_back(TLinkedList *list, struct student *st){
+int list_back(TLinkedList *list, struct aluno *st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
@@ -130,10 +127,6 @@ int list_pop_front(TLinkedList *list){
     aux = list->head;
     list->head = list->head->next;
     free(aux);
-    // printf("\n----------print freed aux--------------\n");
-    // printf("Id: %d\n", aux->data.id);
-    // printf("Name: %s\n", aux->data.name);
-    // printf("Grades: %.1f; %.1f; %.1f.\n", aux->data.g1, aux->data.g2, aux->data.g3);
     return SUCCESS;
 }
 
@@ -157,7 +150,7 @@ int list_pop_back(TLinkedList *list){
     return SUCCESS;
 }
 
-int list_find_pos(TLinkedList *list, int pos, struct student *st){
+int list_find_pos(TLinkedList *list, int pos, struct aluno *st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
@@ -178,7 +171,7 @@ int list_find_pos(TLinkedList *list, int pos, struct student *st){
     return SUCCESS;
 }
 
-int list_find_id(TLinkedList *list, int id, struct student *st){
+int list_find_id(TLinkedList *list, int id, struct aluno *st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
@@ -189,7 +182,7 @@ int list_find_id(TLinkedList *list, int id, struct student *st){
     list_node *aux;
     aux = list->head;
 
-    while (aux != NULL && aux->data.id != id){
+    while (aux != NULL && aux->data.matricula != id){
         aux = aux->next;
     }
 
@@ -213,7 +206,7 @@ int list_get_pos(TLinkedList *list, int id, int *pos){
     aux = list->head;
     int count=1;
 
-    while (aux != NULL && aux->data.id != id){
+    while (aux != NULL && aux->data.matricula != id){
         count++;
         aux = aux->next;
     }
@@ -269,7 +262,7 @@ int list_erase_data(TLinkedList *list, int id){
     current = list->head;
     previous = NULL;
 
-    while (current != NULL && current->data.id != id){
+    while (current != NULL && current->data.matricula != id){
         previous = current;
         current = current->next;
     }
@@ -283,7 +276,7 @@ int list_erase_data(TLinkedList *list, int id){
     return SUCCESS;
 }
 
-int list_insert(TLinkedList *list, int pos, struct student st){
+int list_insert(TLinkedList *list, int pos, struct aluno st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
@@ -306,14 +299,11 @@ int list_insert(TLinkedList *list, int pos, struct student st){
         previous = current;
         current = current->next;
     }
-    // printf("new node: %d", node->data.id);
-    // printf("previous node: %d", previous->data.id);
-    // printf("current node: %d", current->data.id);
-    // previous->next = node;
-    // node->next = current;
+
     if (previous == NULL){
         node->next = list->head;
         list->head = node;
+        
     } else {
         previous->next = node;
         node->next = current;
@@ -322,7 +312,7 @@ int list_insert(TLinkedList *list, int pos, struct student st){
     return SUCCESS;
 }
 
-int list_insert_sorted(TLinkedList *list, struct student st){
+int list_insert_sorted(TLinkedList *list, struct aluno st){
     if (list == NULL){
         return INVALID_NULL_POINTER;
     }
@@ -338,7 +328,7 @@ int list_insert_sorted(TLinkedList *list, struct student st){
     previous = NULL;
     current = list->head;
     
-    while (current != NULL && current->data.id < st.id){
+    while (current != NULL && current->data.matricula < st.matricula){
         previous = current;
         current = current->next;
     }
@@ -360,16 +350,16 @@ int list_print(TLinkedList *list){
     list_node *aux;
     aux = list->head;
     
-    printf ("\n--- Printing list ---\n");
+    // printf ("\n--- Printing list ---\n");
     while (aux != NULL){
         printf("\n------------------------\n");
-        printf("Id: %d\n", aux->data.id);
-        printf("Name: %s\n", aux->data.name);
-        printf("Grades: %.1f; %.1f; %.1f.\n", aux->data.g1, aux->data.g2, aux->data.g3);
+        printf("Id: %d\n", aux->data.matricula);
+        printf("Name: %s\n", aux->data.nome);
+        printf("Grades: %.1f; %.1f; %.1f.\n", aux->data.n1, aux->data.n2, aux->data.n3);
 
         aux = aux->next;
     }
-    printf ("\n--- End of the list ---\n");
+    // printf ("\n--- End of the list ---\n");
     return SUCCESS;
 }
 

@@ -26,5 +26,25 @@ pre <-> in <-> pos
 */
 
 int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
+    if (pre == NULL || in == NULL || pos == NULL){ // qualquer lista não alocada
+        return -1;
+    }
+    if (pre->begin == NULL || in->begin == NULL || pos->begin == NULL){ // qualquer lista vazia
+        return -1;
+    }
+    pre->end->next = in->begin;
+    pre->end->next->prev = pre->end;
+    
+    in->end->next = pos->begin;
+    in->end->next->prev = in->end;
 
+    pre->end = pos->end;
+
+    in->begin = NULL;
+    in->end = NULL;
+
+    pos->begin = NULL;
+    pos->end = NULL;
+    
+    return 0;
 }

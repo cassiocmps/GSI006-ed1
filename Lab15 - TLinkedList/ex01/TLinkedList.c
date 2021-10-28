@@ -152,6 +152,11 @@ int list_pop_back(TLinkedList *list){
             previous = current;
             current = current->next;
         }
+    if (previous == NULL){
+        free(current);
+        list->head = NULL;
+        return SUCCESS;
+    }
     previous->next = NULL;
     free(current);
     return SUCCESS;

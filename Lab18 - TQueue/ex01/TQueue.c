@@ -3,9 +3,6 @@
 #include "TQueue.h"
 #include "TSeqList.h"
 
-
-
-// é possível criar a lista
 struct TQueue{
     int front, rear, size;
     TSeqList *list;

@@ -16,6 +16,7 @@ int queue_free(TQueue *queue);
 
 int queue_push(TQueue *queue, struct aluno al);
 int queue_pop(TQueue *queue);
+int queue_compact(TQueue *queue);
 int queue_front(TQueue *queue, struct aluno *al);
 int queue_rear(TQueue *queue, struct aluno *al);
 

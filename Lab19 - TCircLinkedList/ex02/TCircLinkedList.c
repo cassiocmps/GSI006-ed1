@@ -11,6 +11,7 @@ struct TCircLinkedList {
 struct cl_node {
     struct aluno data;
     cl_node *next;
+    int current; // não testado
 };
 
 TCircLinkedList *circlist_create(){
@@ -382,4 +383,37 @@ int circlist_free(TCircLinkedList *list){
     } while (aux != verification);
     free(list);
     return SUCCESS;
+}
+
+int circlist_current(TCircLinkedList *list, struct aluno *al){ // não testado
+    if (list == NULL){
+        return INVALID_NULL_POINTER;
+    }
+    if (list->end == NULL){
+        return ELEM_NOT_FOUND;
+    }
+
+    cl_node *aux = list->end->next;
+    while (aux->next != list->end->next && aux->current != 1){
+        aux = aux->next;
+    }
+
+    if (aux == list->end){
+        if (list->end->current == 1){
+            *al = aux->data;
+            aux->current = 0;
+            aux->next->current = 1;
+            return SUCCESS;
+        } else {
+            *al = list->end->next->data;
+            list->end->next->current = 0;
+            list->end->next->next->current = 1;
+            return SUCCESS;
+        }
+    }else{
+        *al = aux->data;
+        aux->current = 0;
+        aux->next->current = 1;
+        return SUCCESS;
+    }
 }

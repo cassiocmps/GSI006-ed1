@@ -12,7 +12,7 @@ Exemplo de como mostrar a pilha
 Expressão: 
 
 1 -7 3 + * 4 -
-
+*/
 --------------------------------------------------------------------------
 1 <topo
 1 -7 <topo
@@ -20,9 +20,8 @@ Expressão:
 1 -4 <topo (3 e -7 desempilhados, somando, e resultado é empilhado)
 -4 <topo (-4 e 1 desempilhados, multiplicando, e resultado é empilhado)
 -4 4 <topo
--8 <topo (4 e -4 desempilhados, subtraindo, e resultado é empilhado)
+-8 <topo (4 e -4 desempilhados, subtraindo, e resultado é empilhado)// check:<<<erro: 4 - (-4) = 8>>>>
 
 -8 é o unico elemento empilhado e portanto é o resutlado final
 
 
-*/

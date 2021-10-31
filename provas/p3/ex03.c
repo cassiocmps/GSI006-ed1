@@ -14,13 +14,13 @@ int main(){
     char s[100], print;
     printf("\nINSIRA A STRING A SER INVERTIDA: ");
     fgets(s, 100, stdin);
-    st = stack_create((strlen(s)-1));
+    st = stack_create((strlen(s)-1));// check:<<<comentário: dependendo do caso o -1 não faz sentido (quando digita mais que 100)>>>>
 
     for (int i=0; i<(strlen(s)-1); i++){
         stack_push(st, s[i]);
     }
 
-    for (int i=0; i<(strlen(s)-1); i++){
+    for (int i=0; i<(strlen(s)-1); i++){// check:<<<comentário: use o teste de pilha vazia que fica melhor>>>>
         stack_top(st, &print);
         printf("%c", print);
         stack_pop(st);

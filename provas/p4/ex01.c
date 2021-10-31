@@ -23,6 +23,9 @@ Vetor Concatenado = [ 1, 5, 2, 10, 30]
 #include <stdio.h>
 #include <stdlib.h>
 
+// check:<<<erro: vetor resultante deve ser passado como ponteiro de ponteiro>>>>
+
+
 // int concatena_vetor(int vet1[], int vet2[], int *vet_concat){
 int concatena_vetor(int v1[], int v2[], int t1, int t2, int *novo_v, int *novo_t){
     if (t1<=0 || t2<=0){
@@ -55,7 +58,7 @@ int main(){
     int vet2[2] = {10, 30};
     int *vet_concat, tam_c;
     
-    int tam_vet1 = *(&vet1+1) - vet1;
+    int tam_vet1 = *(&vet1+1) - vet1;// check:<<<erro: ?>>>>
     printf("\nNumber of elements in arr[1] is %d\n", tam_vet1);
     int tam_vet2 = *(&vet2+1) - vet2;
     printf("\nNumber of elements in arr[2] is %d\n", tam_vet2);

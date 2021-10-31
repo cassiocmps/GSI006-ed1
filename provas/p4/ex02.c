@@ -6,21 +6,24 @@ percorrida ainda, o próximo elemento é a cabeça. Depois, ao chamar a função
 novamente, será devolvido o segundo elemento, e assim sucessivamente.
 
 (a) mostrar como fica a estrutura do TAD
-
+*/
 typedef struct cl_node cl_node;
 
 struct TCircLinkedList {
-    cl_node *end;
+    cl_node *end; // check:<<<erro: espera-se um ponteiro para o nó >>>>
 };
 
 struct cl_node {
     struct aluno data;
     cl_node *next;
-    int current;
+    int current;// check:<<<comentário: esta guardando um espaço no nó que vai ser pouco usado (todos falso e um verdadeiro)>>>>
 };
 
 (b) mostrar a função que retorna o próximo elemento
 *Não é necessário mostrar as outras funções afetadas pela modificação proposta
+
+// check:<<<erro: faz percorrer a lista sendo que bastava ter um ponteiro direto para o elemento>>>>
+// check:<<<erro: fez o teste para saber se é a primeira vez que chama a função>>>>
 
 int circlist_current(TCircLinkedList *list, struct aluno *al){
     if (list == NULL){
@@ -41,7 +44,7 @@ int circlist_current(TCircLinkedList *list, struct aluno *al){
             aux->current = 0;
             aux->next->current = 1;
             return SUCCESS;
-        } else {
+        } else {// check:<<<erro: dado que a lista é circular precisa desse tipo de diferenciação?>>>>
             *al = list->end->next->data;
             list->end->next->current = 0;
             list->end->next->next->current = 1;

@@ -30,7 +30,7 @@ int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
         return -1;
     }
     if (pre->begin == NULL || in->begin == NULL || pos->begin == NULL){ // qualquer lista vazia
-        return -1;
+        return -1;// check:<<<erro: qual o motivo de não concatenar uma lista vazia?>>>>
     }
     pre->end->next = in->begin;
     pre->end->next->prev = pre->end;
@@ -45,6 +45,7 @@ int list_concat3(TDLinkedList *pre, TDLinkedList *in, TDLinkedList *pos){
 
     pos->begin = NULL;
     pos->end = NULL;
+    // check:<<<erro: e2.1 faltaram os testes para os casos de listas vazias>>>>
     
     return 0;
 }
